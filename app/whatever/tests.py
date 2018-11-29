@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from whatever.forms import WhateverForm
 from whatever.models import Whatever
 from django.utils import timezone
 
@@ -22,6 +23,18 @@ class WhateverTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(w.title, response.content.decode('utf-8'))
+
+    def test_valid_form(self):
+        w = Whatever.objects.create(title='Foo', body='Bar')
+        data = {'title': w.title, 'body': w.body}
+        form = WhateverForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_form(self):
+        w = Whatever.objects.create(title='Foo', body='')
+        data = {'title': w.title, 'body': w.body}
+        form = WhateverForm(data=data)
+        self.assertFalse(form.is_valid())
 
 
 import os
@@ -48,3 +61,15 @@ class TestSignup(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+from tastypie.test import ResourceTestCaseMixin
+
+
+class EntryResourceTest(ResourceTestCaseMixin, TestCase):
+    def test_get_api_json(self):
+        resp = self.api_client.get('/api/whatever/', format='json')
+        self.assertValidJSONResponse(resp)
+
+    def test_get_api_xml(self):
+        resp = self.api_client.get('/api/whatever/', format='xml')
+        self.assertValidXMLResponse(resp)

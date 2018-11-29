@@ -7,7 +7,7 @@
 ### Setup
 `coverage`를 설치하고 `INSTALLED_APPS`에 추가 한다
 ```bash
-pip install coverage
+pip install coverage==4.5.2
 ```
 
 그리고 `coverage`를 실행 해보자
@@ -89,6 +89,11 @@ OK
         self.assertIn(w.title, response.content.decode('utf-8'))
 ```
 
+
+```bash
+pip install selenium==3.141.0
+```
+
 여기서 우리는 클라이언트로 부터 `URL`을 가져와 다시 변수 `response`에 저장하고 응답코드가 200인지 테스트 한다음
 실제 응답 컨텐츠를 테스트 한다. 그러면 다음의 결과를 얻어야 한다.
 
@@ -141,3 +146,59 @@ if __name__ == '__main__':
 
 테스트 진행후 오브젝트가 올바르게 생성 되었는지도 확인 해 보라.
 
+
+## 폼 테스트
+
+다음 메소드를 추가 함.
+```python
+    def test_valid_form(self):
+        w = Whatever.objects.create(title='Foo', body='Bar')
+        data = {'title': w.title, 'body': w.body}
+        form = WhateverForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_form(self):
+        w = Whatever.objects.create(title='Foo', body='')
+        data = {'title': w.title, 'body': w.body}
+        form = WhateverForm(data=data)
+        self.assertFalse(form.is_valid())
+```
+`JSON`으로 폼의 데이터를 생성하는 방법에 유의 하여야 한다. 이것은 고정이다.
+
+```bash
+test_invalid_form (whatever.tests.WhateverTest) ... ok
+test_valid_form (whatever.tests.WhateverTest) ... ok
+test_whatever_creation (whatever.tests.WhateverTest) ... ok
+test_whatever_list_view (whatever.tests.WhateverTest) ... ok
+test_signup_fire (whatever.tests.TestSignup) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.405s
+
+```
+폼 자체의 유효성 검사기를 기반으로 특정 오류 메시지가 표시되는지 여부를 확인하는 테스트를 작성할 수도 있습니다.
+
+## API 테스트
+
+먼저 다음 URL에서 API에 액세스 할 수 있습니다. [http://localhost:8000/api/whatever/?format=json](http://localhost:8000/api/whatever/?format=json)
+이것은 간단한 설정이므로 테스트도 상당히 간단합니다.
+
+```bash
+pip install lxml==4.2.5
+pip install defusedxml==0.5.0
+```
+```python
+from tastypie.test import ResourceTestCaseMixin
+
+
+class EntryResourceTest(ResourceTestCaseMixin, TestCase):
+    def test_get_api_json(self):
+        resp = self.api_client.get('/api/whatever/', format='json')
+        self.assertValidJSONResponse(resp)
+
+    def test_get_api_xml(self):
+        resp = self.api_client.get('/api/whatever/', format='xml')
+        self.assertValidXMLResponse(resp)
+
+```
+각각의 경우 다른 응답을 받는다.
