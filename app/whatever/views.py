@@ -1,9 +1,9 @@
 from django.shortcuts import render_to_response
-from django.template.context_processors import csrf
-
 from whatever.models import Whatever
+from django.template.context_processors import csrf
+from django.utils import timezone
 from whatever.forms import WhateverForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def whatever(request):

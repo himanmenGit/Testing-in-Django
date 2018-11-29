@@ -26,7 +26,10 @@ coverage html
 > 그러면 `htmlcov`에 `html` 파일들이 생긴것을 확인 할 수 있다.
 
 그리고 `htmlcov/index.html` 을 열어 `whatever/models.py.html`을 열면 아래와 같은 화면이 보인다
-![whatever_models_py](../asset/whatever_models_py_01.png) 
+![](../asset/whatever_models_py_01.png) 
+
+
+## 모델 테스트
 
 기본적으로 이 보고서는 모델의 타이틀을 테스트 해야 하는것을 나타낸다.
 `whatever/tests.py`를 열고 코드를 작성 해보자
@@ -66,4 +69,75 @@ Ran 1 test in 0.001s
 OK
 ```
 그리고 다시 `coverage html`을 하고 보고서를 보면 모델이 100%로 되어 있어야 한다.
-![whatever_models_py](../asset/whatever_models_py_02.png)
+![](../asset/whatever_models_py_02.png)
+
+
+## 뷰 테스트
+뷰 테스트는 때로는 어려울 수 있다. 일반적으로 상태 코드를 검사 하기 위해 단위 테스트를 사용한다. 
+뿐만 아니라 `AJAX`, `Javascript`등을 테스트 하기 위해 `Selenium Webdriver`을 사용한다.
+
+`whatever/tests.py`의 `WhateverTest`클래스에 다음 코드를 추가 한다.
+
+```python
+# views (uses reverse)
+    def test_whatever_list_view(self):
+        w = self.create_whatever()
+        url = reverse('whatever.views.whatever')
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(w.title, response.content.decode('utf-8'))
+```
+
+여기서 우리는 클라이언트로 부터 `URL`을 가져와 다시 변수 `response`에 저장하고 응답코드가 200인지 테스트 한다음
+실제 응답 컨텐츠를 테스트 한다. 그러면 다음의 결과를 얻어야 한다.
+
+```bash
+test_whatever_creation (whatever.tests.WhateverTest) ... ok
+test_whatever_list_view (whatever.tests.WhateverTest) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.043s
+
+OK
+```
+
+보고서(`coverage html`)을 다시 실행하면 `whatever/views`의 커버리지가 아래와 같이 나와야 한다.
+
+![](../asset/whatever_models_py_03.png)
+
+또한 테스트를 작성하여 무엇이 실패 하는지 알수 있다. 예를들어 새 객체를 만들기 위해 사용자가 로그인 해야 하는경우
+실제로 객체를 만들지 못하면 테스트는 성공한다.
+
+셀레니움 테스트를 보자
+```python
+import os
+import unittest
+from selenium import webdriver
+
+
+class TestSignup(unittest.TestCase):
+    def setUp(self):
+        current_folder = os.path.dirname(os.path.realpath(__file__))
+        driver_path = os.path.join(current_folder, 'chromedriver')
+        self.driver = webdriver.Chrome(driver_path)
+
+    def test_signup_fire(self):
+        self.driver.get("http://localhost:8000/add/")
+        self.driver.find_element_by_id('id_title').send_keys("test title")
+        self.driver.find_element_by_id('id_body').send_keys("test body")
+        self.driver.find_element_by_id('submit').click()
+        self.assertIn("http://localhost:8000/", self.driver.current_url)
+
+    def tearDown(self):
+        self.driver.quit()
+
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+> `runserver`를 하고 테스트를 해야 셀레니움이 잘 진행 된다.
+
+테스트 진행후 오브젝트가 올바르게 생성 되었는지도 확인 해 보라.
+
