@@ -26,7 +26,7 @@ coverage html
 > 그러면 `htmlcov`에 `html` 파일들이 생긴것을 확인 할 수 있다.
 
 그리고 `htmlcov/index.html` 을 열어 `whatever/models.py.html`을 열면 아래와 같은 화면이 보인다
-![](../asset/whatever_models_py_01.png) 
+![](asset/whatever_models_py_01.png) 
 
 
 ## 모델 테스트
@@ -69,7 +69,7 @@ Ran 1 test in 0.001s
 OK
 ```
 그리고 다시 `coverage html`을 하고 보고서를 보면 모델이 100%로 되어 있어야 한다.
-![](../asset/whatever_models_py_02.png)
+![](asset/whatever_models_py_02.png)
 
 
 ## 뷰 테스트
@@ -109,7 +109,7 @@ OK
 
 보고서(`coverage html`)을 다시 실행하면 `whatever/views`의 커버리지가 아래와 같이 나와야 한다.
 
-![](../asset/whatever_models_py_03.png)
+![](asset/whatever_models_py_03.png)
 
 또한 테스트를 작성하여 무엇이 실패 하는지 알수 있다. 예를들어 새 객체를 만들기 위해 사용자가 로그인 해야 하는경우
 실제로 객체를 만들지 못하면 테스트는 성공한다.
