@@ -1,0 +1,11 @@
+Django
+South
+coverage
+defusedxml
+django-tastypie
+lxml
+mimeparse
+model-mommy
+python-dateutil
+selenium
+six
