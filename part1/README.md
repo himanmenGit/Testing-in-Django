@@ -5,15 +5,15 @@ Link: [요기](https://realpython.com/testing-in-django-part-1-best-practices-an
 
 ### 목차
 
-* 장고 테스트의 소개
-    * 테스트들의 유형
-    * 모범 사례
-    * 구조
-    * 서드파티 패키지
-* 예제
-    * 설정
-    * 모델 테스팅
-    * 뷰 테스팅
-    * 폼 테스팅
-    * API 테스팅
-    
+* [장고 테스트의 소개](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#intro-to-testing-in-django)
+    * [테스트들의 유형](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#types-of-tests)
+    * [모범 사례](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#best-practices)
+    * [구조](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#structure)
+    * [서드파티 패키지](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#third-party-packages)
+* [예제](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#examples)
+    * [설정](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#setup)
+    * [모델 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-models)
+    * [뷰 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-views)
+    * [폼 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-forms)
+    * [API 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-the-api)
+

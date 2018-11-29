@@ -11,17 +11,17 @@ Link: [요기](https://realpython.com/testing-in-django-part-1-best-practices-an
 
 ### 목차
 
-* 장고 테스트의 소개
-    * 테스트들의 유형
-    * 모범 사례
-    * 구조
-    * 서드파티 패키지
-* 예제
-    * 설정
-    * 모델 테스팅
-    * 뷰 테스팅
-    * 폼 테스팅
-    * API 테스팅
+* [장고 테스트의 소개](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#intro-to-testing-in-django)
+    * [테스트들의 유형](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#types-of-tests)
+    * [모범 사례](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#best-practices)
+    * [구조](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#structure)
+    * [서드파티 패키지](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#third-party-packages)
+* [예제](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#examples)
+    * [설정](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#setup)
+    * [모델 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-models)
+    * [뷰 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-views)
+    * [폼 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-forms)
+    * [API 테스팅](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#testing-the-api)
     
 
 # Part2
@@ -31,13 +31,13 @@ Link: [요기](https://realpython.com/testing-in-django-part-2-model-mommy-vs-dj
 
 ### 목차
 
-* 왜 신경 써서 해야 하나?
-* 장고 테스트 도구
-* 모델 Mommy
-* 새 모델
-    * 설정
-    * 테스트
-* Well?
+* [왜 신경 써서 해야 하나?](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#why-should-you-care)
+* [장고 테스트 도구](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#django-testing-fixtures)
+* [모델 Mommy](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#model-mommy)
+* [새 모델](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#new-model)
+    * [설정](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#setup)
+    * [테스트](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#test)
+* [Well?](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#well)
 
 # 후기
 ...
