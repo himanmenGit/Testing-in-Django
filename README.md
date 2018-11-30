@@ -42,4 +42,14 @@ Link: [요기](https://realpython.com/testing-in-django-part-2-model-mommy-vs-dj
 * [Well?](https://realpython.com/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/#well)
 
 # 후기
-...
+
+일단 좀 오래된 예제와 포스팅을 가지고 공부를 했다.
+그래서 그런지 테스트 형식은 지금의 방식과 약간 맞지 않았던것 같다. 
+하지만 테스트를 하기 위해 필요한 좋은 서드파티 툴을 알게 되었고
+테스트를 모든 방향에서 가능하다는것을 알게 되었다.
+
+이제 궁금한것은 테스트를 얼마만큼 해야 하는가 에 대한 것이다.
+테스트를 짜다 보면 로직이 맞는지 테스트를 해야 하는것은 당연하지만
+잘못된 값에 대한 테스트또한 해야 하는지 헷갈린다.
+
+좀더 테스트에 대한 본질적인 생각을 해봐야 하나 싶다.
