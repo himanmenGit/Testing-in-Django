@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from model_mommy import mommy
 
 from whatever.forms import WhateverForm
 from whatever.models import Whatever
@@ -8,8 +9,9 @@ from django.utils import timezone
 
 # models test
 class WhateverTest(TestCase):
-    def create_whatever(self, title="only a test", body="yes, this is only a test"):
-        return Whatever.objects.create(title=title, body=body, created_at=timezone.now())
+    def create_whatever(self):
+        what = mommy.make(Whatever)
+        return what
 
     def test_whatever_creation(self):
         w = self.create_whatever()
